@@ -31,6 +31,8 @@ class CategoriesController extends Controller
         $category->save();
 
         return redirect( route('categories.index') );
+
+
     }
 
     public function edit(Category $category)
