@@ -40,7 +40,7 @@ class KommentsController extends Controller
 //        dd($request);
 //        Komment::create($request->all());
         Komment::create(['author' => $request->author,
-            'content' => $request->content,
+            'content' => $request->get('content'),
             'article_id' => $request->article_id]);
 //        $komment = Komment::create()
 //        $komment->article_id = $request->article_id;
@@ -105,7 +105,7 @@ class KommentsController extends Controller
 //        echo $komment->update($request->all());
 //        Komment::
         $komment->update(['author' => $request->author,
-            'content' => $request->content,
+            'content' => $request->get('content'),
             'article_id' => $request->article_id]);
 
 

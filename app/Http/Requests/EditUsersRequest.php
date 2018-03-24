@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueEmail;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class EditUsersRequest extends FormRequest
 
             'email' => [
                 'required',
-                Rule::unique('users')->ignore($request->id)
+                new UniqueEmail($request)
             ],
 
             'password' => 'required'

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\EditUsersRequest;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create',
+            ['roles' => $roles]);
     }
 
     /**
@@ -51,8 +54,9 @@ class UsersController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
 
-        User::create($data);
+        $user =  User::create($data);
 
+        $user->roles()->attach($request->get('roles_id'));
         return redirect( route('users.index'));
     }
 
@@ -75,8 +79,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $roles = Role::all();
         return view('users.edit',[
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles,
+            'flatSelectedRoles' => $user->roles()->pluck('id')->toArray()
         ]);
     }
 
@@ -87,9 +94,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditUsersRequest $request, User $user)
+    public function update(UsersRequest $request, User $user)
     {
+//        dd($request);
         $user->update($request->all());
+
+        $user->roles()->sync($request->get('roles_id'));
 
         return redirect( route('users.index'));
     }

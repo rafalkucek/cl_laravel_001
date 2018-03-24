@@ -21,6 +21,14 @@
             <input type="text" class="form-control" name="email" placeholder="e-mail"><br>
             <input type="password" class="form-control" name="password" placeholder="password">
         </div>
+        <div class="form-group">
+            @foreach($roles as $role)
+                <label>
+                    {{ $role->name }}
+                    <input type="checkbox" name="roles_id[]" value="{{ $role->id }}">
+                </label>
+            @endforeach
+        </div>
         <button class="btn btn-success">Zapisz</button>
     </form>
 @endsection

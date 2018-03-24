@@ -31,6 +31,21 @@
                     </select>
                 </div>
 
+            <div class="form-group">
+                @foreach($files as $file)
+
+                    <label>
+                        <img src="/storage/thumb_{{ $file->file_name }}" alt="">
+                        @if(in_array($file->id, $flatSelectedFiles))
+                            <input type="checkbox" checked name="files_id[]" value="{{ $file->id }}">
+                        @else
+                            <input type="checkbox"  name="files_id[]" value="{{ $file->id }}">
+                        @endif
+                    </label>
+
+                @endforeach
+            </div>
+
 
         </div>
         <div class="form-group">

@@ -27,6 +27,11 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <a href=" {{ route('articles.index') }} " class="btn btn-success">Artykuły</a>
+                <a href=" {{ route('files.index') }} " class="btn btn-success">Pliki</a>
+                <a href=" {{ route('categories.index') }} " class="btn btn-success">Kategorie</a>
+                <a href=" {{ route('roles.index') }} " class="btn btn-success">Roles</a>
+                <a href=" {{ route('users.index') }} " class="btn btn-success">Users</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

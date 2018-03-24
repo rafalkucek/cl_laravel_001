@@ -20,6 +20,22 @@
             <input type="text" value="{{ $user->email }}" class="form-control" name="email" placeholder="e-mail"><br>
             <input type="password" value="{{ $user->password }}" class="form-control" name="password" placeholder="password">
         </div>
+
+        <div class="form-group">
+            @foreach($roles as $role)
+
+                <label>
+                    {{ $role->name }}
+                    @if(in_array($role->id, $flatSelectedRoles))
+                        <input type="checkbox" checked name="roles_id[]" value="{{ $role->id }}">
+                    @else
+                        <input type="checkbox"  name="roles_id[]" value="{{ $role->id }}">
+                    @endif
+                </label>
+
+            @endforeach
+        </div>
+
         <button class="btn btn-success">Aktualizuj</button>
     </form>
 @endsection

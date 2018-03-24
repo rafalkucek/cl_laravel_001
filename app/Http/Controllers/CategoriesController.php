@@ -24,15 +24,11 @@ class CategoriesController extends Controller
 
     public function store(CategoriesRequest $request)
     {
-        //dd($request->all());
-
         $category = new Category();
         $category->name = $request->name;
         $category->save();
 
         return redirect( route('categories.index') );
-
-
     }
 
     public function edit(Category $category)
